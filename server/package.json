@@ -1,0 +1,8 @@
+{
+  "name": "Telepresence-Server",
+  "dependencies": {
+    "node-gcm": "0.14.4",
+    "apn": "^1.7.5",
+    "pubnub" : "4.3.1"
+  }
+}

@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding id="homeContent">
   <h2>Welcome to ShareGrow!</h2>
   <p>
     ShareGrow is your personalized assistant to let you know when crops need TLC as well as harvesting.
@@ -13,4 +13,39 @@
     A beaver loves you
   </p>
   <button ion-button (click)="clicked()">Harvest Time!</button>
+
+  <!--<ion-card>
+    <ion-card-header>
+      Registration ID
+    </ion-card-header>
+    <ion-card-content id="regId">
+      No ID 😥
+    </ion-card-content>
+  </ion-card>-->
+
+  <ion-card *ngFor="let card of cards">
+    <img *ngIf="card.picture" [src]="card.picture"/>
+
+    <ion-card-header>
+      {{card.title}}
+    </ion-card-header>
+
+    <ion-card-content>
+      {{card.message}}
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button block outline icon-only color="primary">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button block outline icon-only color="danger">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
 </ion-content>
