@@ -1,23 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, keyframes, group } from '@angular/core';
 import PubNub from 'pubnub';
 import { Vibration } from 'ionic-native';
 
 import { NavController } from 'ionic-angular';
 
-declare var FCMPlugin;
-
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({transform: 'translateX(0)'})),
+      transition('void => *', [ //:enter
+        style({
+          opacity: 0,
+          transform: 'translateX(-100%)'
+        }),
+        animate('300ms 200ms ease-in') // Wait for 100ms, animate for 400ms
+      ]),
+      transition('* => void', [ //:leave
+        group([
+          animate('300ms 150ms ease-out', style({
+            transform: 'translateX(100%)'
+          })),
+          animate('250ms 150ms ease-out', style({
+            opacity: 0
+          }))
+        ])
+        
+      ])
+    ])
+  ]
 })
 export class HomePage {
 
   pubnub = new PubNub({
     subscribeKey: 'sub-c-ed3469b0-b1ca-11e6-b4d6-02ee2ddab7fe', // always required
-    publishKey: 'pub-c-b414e284-a556-45e2-b415-eb9b867f7788' // only required if publishing
+    publishKey: 'pub-c-b414e284-a556-45e2-b415-eb9b867f7788', // only required if publishing
+    ssl: true
   });
 
   cards = [];
+
+  pictures = [
+    "http://www.torellomountainfilm.com/wp-content/uploads/2015/01/proper-harvest-times.jpg",
+    "http://www.stmellonsbaptist.org.uk/wp-content/uploads/2013/09/harvest-1024x393.jpg",
+    "http://images.huffingtonpost.com/2010-10-26-images-KatherineGrapePicking.jpg",
+    "https://i.ytimg.com/vi/6YCnU5VgX9M/maxresdefault.jpg",
+    "https://i.ytimg.com/vi/pvMCyNvxw8A/maxresdefault.jpg",
+    "https://www.colourbox.com/preview/4225759-potato-plant.jpg",
+    "http://hub.suttons.co.uk/wp-content/uploads/2014/09/grafted-sweet-potato-plants-harvesting.jpg",
+    "http://ladyleeshome.com/wp-content/uploads/2016/01/How-to-plant-potatoes.jpg"
+  ];
 
   constructor(public navCtrl: NavController) {
     let self = this;
@@ -26,7 +59,7 @@ export class HomePage {
       message: function(message) {
         console.log("Message received!", message);
         self.addCard(message.message);
-        Vibration.vibrate([10]);
+        Vibration.vibrate(10);
       },
       presence: function(presenceEvent) {
         // handle presence
@@ -41,18 +74,17 @@ export class HomePage {
 
   clicked() {
     console.log("clicked yeah");
-
-    // this.cards.push({title: 'apa', message:'fisk'})
     
     var publishConfig = {
       channel: "ShareGrow",
       message: {
         title: "Yo, dawg",
-        message: "Harvest that shit!",
+        body: "Harvest those plants!",
         style: "picture",
-        picture: "http://www.stmellonsbaptist.org.uk/wp-content/uploads/2013/09/harvest-1024x393.jpg"
+        picture: this.pictures[Math.floor(Math.random()*this.pictures.length)]
       }
     }
+    
     this.pubnub.publish(publishConfig, function(status, response) {
       console.log(status, response);
     })
@@ -63,5 +95,12 @@ export class HomePage {
     // localStorage.setItem('cards', JSON.stringify(this.cards));
   };
 
+  deleteCard(index) {
+    this.cards.splice(index,1);
+  }
+
+  acceptCard(index) {
+    this.cards.splice(index,1); // TODO: Do something else
+  }
 
 }

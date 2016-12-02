@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding id="homeContent">
+<ion-content padding>
   <h2>Welcome to ShareGrow!</h2>
   <p>
     ShareGrow is your personalized assistant to let you know when crops need TLC as well as harvesting.
@@ -23,7 +23,8 @@
     </ion-card-content>
   </ion-card>-->
 
-  <ion-card *ngFor="let card of cards">
+  <ion-card *ngFor="let card of cards; let i = index" 
+            [@flyInOut]="'in'">
     <img *ngIf="card.picture" [src]="card.picture"/>
 
     <ion-card-header>
@@ -31,17 +32,17 @@
     </ion-card-header>
 
     <ion-card-content>
-      {{card.message}}
+      {{card.body}}
     </ion-card-content>
 
     <ion-row>
       <ion-col>
-        <button ion-button block outline icon-only color="primary">
+        <button ion-button block outline icon-only color="primary" (click)="acceptCard(i)">
           <ion-icon name="checkmark"></ion-icon>
         </button>
       </ion-col>
       <ion-col>
-        <button ion-button block outline icon-only color="danger">
+        <button ion-button block outline icon-only color="danger" (click)="deleteCard(i)">
           <ion-icon name="close"></ion-icon>
         </button>
       </ion-col>
