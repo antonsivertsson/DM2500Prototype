@@ -37,7 +37,8 @@
     "cordova-plugin-splashscreen",
     "ionic-plugin-keyboard",
     "cordova-plugin-vibration",
-    "cordova-plugin-fcm"
+    "cordova-plugin-fcm",
+    "cordova-plugin-headercolor"
   ],
   "cordovaPlatforms": [
     "ios",
