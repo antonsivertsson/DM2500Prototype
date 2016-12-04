@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform, ToastController } from 'ionic-angular';
 import { StatusBar, Vibration } from 'ionic-native';
-// import { Headercolor } from 'HeaderColor'
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -61,17 +60,6 @@ export class MyApp {
       }
     );
   };
-
-  // handleNotification(data) {
-  //   if(data.wasTapped) {
-  //     //Notification was received on device tray and tapped by the user.
-  //     this.presentToast(data);
-  //   } else{
-  //     //Notification was received in foreground. Maybe the user needs to be notified.
-  //     Vibration.vibrate([80,50,200]);
-  //     this.presentToast(data);
-  //   }
-  // }
 
   presentToast(data) {
     let toast = this.toastCtrl.create({
