@@ -15,15 +15,18 @@ import { NavController } from 'ionic-angular';
           opacity: 0,
           transform: 'translateX(-100%)'
         }),
-        animate('300ms 200ms ease-in') // Wait for 100ms, animate for 400ms
+        animate('225ms 200ms ease-out') // Length of animation | Wait before animation | easing
       ]),
       transition('* => void', [ //:leave
         group([
-          animate('300ms 150ms ease-out', style({
+          animate('195ms 150ms ease-in', style({
             transform: 'translateX(100%)'
           })),
-          animate('250ms 150ms ease-out', style({
+          animate('100ms 225ms ease-in', style({
             opacity: 0
+          })),
+          animate('195ms 300ms ease-out', style({
+            height: 0
           }))
         ])
         
