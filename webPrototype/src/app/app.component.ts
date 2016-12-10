@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, ToastController } from 'ionic-angular';
 import { StatusBar, Vibration } from 'ionic-native';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { HomePage } from '../pages/home/home';
 
 declare var FCMPlugin;
 
@@ -10,16 +10,20 @@ declare var FCMPlugin;
   template: `<ion-nav [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = TabsPage;
+  rootPage = HomePage;
 
   constructor(platform: Platform, private toastCtrl: ToastController) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // StatusBar.styleDefault();
-      StatusBar.backgroundColorByHexString('#1c9c44');
-      (<any>window).plugins.headerColor.tint("#1c9c44"); // Recent apps header
-      this.initializeFCM();
+      if(platform.is('mobile') && !platform.is('mobileweb')) {
+        if(platform.is('android')) {
+          (<any>window).plugins.headerColor.tint("#1c9c44"); // Recent apps header
+        }
+        StatusBar.backgroundColorByHexString('#1c9c44');
+        this.initializeFCM();
+      }
     });
   }
 

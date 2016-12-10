@@ -1,3 +1,35 @@
-page-about {
+@import "../../theme/variables";
+about {
+    $imgHeight: 280px;
 
+    .title-img {
+        background: url("../assets/images/fresh_vegetables.jpg");
+        background-size: cover;
+        background-position: 0 -4px;
+        width: 100%;
+        height: $imgHeight;
+        /*padding-top: $imgHeight - 50px;*/
+        margin-bottom: -16px;
+        text-align: center;
+
+        .title {
+            /*background: color($colors, light, base);*/
+            position: absolute;
+            top: 15%;
+            font-size: 2.5em;
+            width: 100%;
+            font-weight: 700;
+            color: #fff; //color($colors, primary, base);
+
+            h2 {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    .first-word {
+        font-size: 1.8em;
+        font-weight: 500;
+        color: color($colors, primary, base);
+    }
 }

@@ -1,11 +1,27 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      About
-    </ion-title>
+  <ion-navbar color="secondary">
+    <ion-title>About</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <div class="title-img">
+    <div class="title" padding>
+      Welcome to HarvestHero!
+    </div>
+  </div>
+  <div padding>
+    <p>
+      <span class="first-word">HarvestHero</span> is your personalized assistant to let you know when crops need TLC as well as harvesting.
+    </p>
+    <p>
+      <ion-icon name="heart" color="danger"></ion-icon> A beaver loves you <ion-icon name="heart" color="danger"></ion-icon>
+    </p>
+    <button ion-button full large color="secondary" (click)="dismiss()">Okay</button>
+  </div>
 </ion-content>

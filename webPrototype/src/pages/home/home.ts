@@ -2,7 +2,9 @@ import { Component, trigger, state, style, transition, animate, keyframes, group
 import PubNub from 'pubnub';
 import { Vibration } from 'ionic-native';
 
-import { NavController } from 'ionic-angular';
+import { Platform, NavController, ModalController } from 'ionic-angular';
+
+import { About } from '../about/about';
 
 @Component({
   selector: 'page-home',
@@ -55,14 +57,28 @@ export class HomePage {
     "http://ladyleeshome.com/wp-content/uploads/2016/01/How-to-plant-potatoes.jpg"
   ];
 
-  constructor(public navCtrl: NavController) {
+  platform;
+
+  constructor(platform: Platform, public navCtrl: NavController, public modalCtrl: ModalController) {
     let self = this;
+    self.platform = platform;
+
+    // localStorage.setItem('showAbout', '');
+    // if(localStorage.getItem('showAbout') !== 'false') {
+    //   self.presentAboutModal();
+    //   localStorage.setItem('showAbout', 'false');
+    // }
     
     this.pubnub.addListener({
       message: function(message) {
         console.log("Message received!", message);
         self.addCard(message.message);
-        Vibration.vibrate(10);
+        
+        if(self.platform === 'mobileweb') {
+          (<any>window).navigator.vibrate(100);
+        } else {
+          Vibration.vibrate(100);
+        } 
       },
       presence: function(presenceEvent) {
         // handle presence
@@ -75,23 +91,28 @@ export class HomePage {
     });
   }
 
-  clicked() {
-    console.log("clicked yeah");
-    
-    var publishConfig = {
-      channel: "ShareGrow",
-      message: {
-        title: "Yo, dawg",
-        body: "Harvest those plants!",
-        style: "picture",
-        picture: this.pictures[Math.floor(Math.random()*this.pictures.length)]
-      }
-    }
-    
-    this.pubnub.publish(publishConfig, function(status, response) {
-      console.log(status, response);
-    })
+  showAboutModal() {
+    let aboutModal = this.modalCtrl.create(About);
+    aboutModal.present();
   }
+
+  // clicked() {
+  //   console.log("clicked yeah");
+    
+  //   var publishConfig = {
+  //     channel: "ShareGrow",
+  //     message: {
+  //       title: "Yo, dawg",
+  //       body: "Harvest those plants!",
+  //       style: "picture",
+  //       picture: this.pictures[Math.floor(Math.random()*this.pictures.length)]
+  //     }
+  //   }
+    
+  //   this.pubnub.publish(publishConfig, function(status, response) {
+  //     console.log(status, response);
+  //   })
+  // }
   
   addCard(message) {
     this.cards.push(message);

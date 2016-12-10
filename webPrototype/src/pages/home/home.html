@@ -1,40 +1,27 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Home</ion-title>
+    <ion-title>HarvestHero</ion-title>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="showAboutModal()">
+        <ion-icon name="information"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <div padding>
-    <h2>Welcome to ShareGrow!</h2>
-    <p>
-      ShareGrow is your personalized assistant to let you know when crops need TLC as well as harvesting.
-    </p>
-    <p>
-      A beaver loves you
-    </p>
-    <button ion-button (click)="clicked()">Harvest Time!</button>
-  </div>
-
-  <!--<ion-card>
-    <ion-card-header>
-      Registration ID
-    </ion-card-header>
-    <ion-card-content id="regId">
-      No ID 😥
-    </ion-card-content>
-  </ion-card>-->
 
   <ion-card *ngFor="let card of cards; let i = index" 
             [@flyInOut]="'in'">
     <img *ngIf="card.picture" [src]="card.picture"/>
-
-    <ion-card-header>
-      {{card.title}}
-    </ion-card-header>
-
+    
     <ion-card-content>
-      {{card.body}}
+      <ion-card-title>
+        {{card.title}}
+      </ion-card-title>
+      <p>
+        {{card.body}}
+      </p>
     </ion-card-content>
 
     <ion-row>
