@@ -14,6 +14,8 @@ export class About {
 
   dismiss() {
     this.viewCtrl.dismiss();
+    (<any>document).getElementsByName('theme-color')[0].setAttribute('content', '#2abc55');
+    (<any>document).getElementsByName('apple-mobile-web-app-status-bar-style')[0].setAttribute('content', '#2abc55');
   }
 
 }

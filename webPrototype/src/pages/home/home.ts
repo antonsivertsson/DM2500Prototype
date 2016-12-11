@@ -1,4 +1,4 @@
-import { Component, trigger, state, style, transition, animate, keyframes, group } from '@angular/core';
+import { Component, trigger, state, style, transition, animate, group } from '@angular/core';
 import PubNub from 'pubnub';
 import { Vibration } from 'ionic-native';
 
@@ -93,6 +93,8 @@ export class HomePage {
 
   showAboutModal() {
     let aboutModal = this.modalCtrl.create(About);
+    (<any>document).getElementsByName('theme-color')[0].setAttribute('content', '#387ef5');
+    (<any>document).getElementsByName('apple-mobile-web-app-status-bar-style')[0].setAttribute('content', '#387ef5');
     aboutModal.present();
   }
   
