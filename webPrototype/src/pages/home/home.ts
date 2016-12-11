@@ -95,24 +95,6 @@ export class HomePage {
     let aboutModal = this.modalCtrl.create(About);
     aboutModal.present();
   }
-
-  // clicked() {
-  //   console.log("clicked yeah");
-    
-  //   var publishConfig = {
-  //     channel: "ShareGrow",
-  //     message: {
-  //       title: "Yo, dawg",
-  //       body: "Harvest those plants!",
-  //       style: "picture",
-  //       picture: this.pictures[Math.floor(Math.random()*this.pictures.length)]
-  //     }
-  //   }
-    
-  //   this.pubnub.publish(publishConfig, function(status, response) {
-  //     console.log(status, response);
-  //   })
-  // }
   
   addCard(message) {
     this.cards.push(message);
@@ -124,7 +106,7 @@ export class HomePage {
   }
 
   acceptCard(index) {
-    this.cards.splice(index,1); // TODO: Do something else
+    this.cards[index].accepted = true;
   }
 
 }

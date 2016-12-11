@@ -12,7 +12,8 @@
 <ion-content>
 
   <ion-card *ngFor="let card of cards; let i = index" 
-            [@flyInOut]="'in'">
+            [@flyInOut]="'in'"
+            [class.card-accepted]="card.accepted">
     <img *ngIf="card.picture" [src]="card.picture"/>
     
     <ion-card-content>
@@ -24,7 +25,18 @@
       </p>
     </ion-card-content>
 
-    <ion-row>
+    <ion-row *ngIf="card.accepted">
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <button ion-button block outline icon-left color="white" (click)="acceptCard(i)">
+          <ion-icon name="checkmark"></ion-icon>
+          Done
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="!card.accepted">
       <ion-col>
         <button ion-button block icon-only color="primary" (click)="acceptCard(i)">
           <ion-icon name="checkmark"></ion-icon>

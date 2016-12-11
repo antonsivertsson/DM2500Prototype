@@ -1,3 +1,17 @@
+@import "../../theme/variables";
 page-home {
+
+    ion-card {
+        transition: background 250ms ease-in;
+    }
+
+    .card-accepted {
+        background: color($colors, primary, base);
+        color: #fff;
+
+        ion-card-title, p {
+            color: #fff;
+        }
+    }
 
 }
