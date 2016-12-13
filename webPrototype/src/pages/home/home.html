@@ -18,12 +18,21 @@
     <span *ngIf="card.type==='harvest'">
       <img *ngIf="card.picture" [src]="card.picture"/>
       
-      <ion-card-content>
+      <ion-card-content *ngIf="card.type==='harvest'">
         <ion-card-title>
           {{card.title}}
         </ion-card-title>
         <p>
           {{card.body}}
+        </p>
+      </ion-card-content>
+
+      <ion-card-content *ngIf="card.type==='done'">
+        <ion-card-title>
+          {{card.doneTitle}}
+        </ion-card-title>
+        <p>
+          {{card.doneBody}}
         </p>
       </ion-card-content>
 
