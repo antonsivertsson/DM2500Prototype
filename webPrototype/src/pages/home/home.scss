@@ -6,6 +6,15 @@ page-home {
     }
 
     .card-accepted {
+        background: color($colors, secondary, base);
+        color: #fff;
+
+        ion-card-title, p {
+            color: #fff;
+        }
+    }
+
+    .card-done {
         background: color($colors, primary, base);
         color: #fff;
 

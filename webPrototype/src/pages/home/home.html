@@ -13,41 +13,68 @@
 
   <ion-card *ngFor="let card of cards; let i = index" 
             [@flyInOut]="'in'"
-            [class.card-accepted]="card.accepted">
-    <img *ngIf="card.picture" [src]="card.picture"/>
-    
-    <ion-card-content>
-      <ion-card-title>
-        {{card.title}}
-      </ion-card-title>
-      <p>
-        {{card.body}}
-      </p>
-    </ion-card-content>
+            [class.card-accepted]="card.accepted"
+            [class.card-done]="card.type==='done'">
+    <span *ngIf="card.type==='harvest'">
+      <img *ngIf="card.picture" [src]="card.picture"/>
+      
+      <ion-card-content>
+        <ion-card-title>
+          {{card.title}}
+        </ion-card-title>
+        <p>
+          {{card.body}}
+        </p>
+      </ion-card-content>
 
-    <ion-row *ngIf="card.accepted">
-      <ion-col>
-      </ion-col>
-      <ion-col>
-        <button ion-button block outline icon-left color="white" (click)="deleteCard(i)">
-          <ion-icon name="checkmark"></ion-icon>
-          Done
-        </button>
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="card.accepted">
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button block outline icon-left color="white" (click)="completeCard(i)">
+            <ion-icon name="checkmark"></ion-icon>
+            Done
+          </button>
+        </ion-col>
+      </ion-row>
 
-    <ion-row *ngIf="!card.accepted">
-      <ion-col>
-        <button ion-button block icon-only color="primary" (click)="acceptCard(i)">
-          <ion-icon name="checkmark"></ion-icon>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button block outline icon-only color="danger" (click)="deleteCard(i)">
-          <ion-icon name="close"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
+      <ion-row *ngIf="!card.accepted">
+        <ion-col>
+          <button ion-button block icon-only color="primary" (click)="acceptCard(i)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button block outline icon-only color="danger" (click)="deleteCard(i)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </span>
+
+    <span *ngIf="card.type==='done'">
+      <img *ngIf="card.picture" [src]="card.picture"/>
+      
+      <ion-card-content>
+        <ion-card-title>
+          {{card.doneTitle}}
+        </ion-card-title>
+        <p>
+          {{card.doneBody}}
+        </p>
+      </ion-card-content>
+
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <button ion-button block outline icon-left color="white" (click)="deleteCard(i)">
+            <ion-icon name="checkmark"></ion-icon>
+            Okay
+          </button>
+        </ion-col>
+      </ion-row>
+    </span>
   </ion-card>
 
 </ion-content>
