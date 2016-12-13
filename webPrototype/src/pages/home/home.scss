@@ -3,6 +3,15 @@ page-home {
 
     ion-card {
         transition: background 250ms ease-in;
+
+        .crop {
+            height: 280px;
+            overflow: hidden;
+
+            img {
+                margin: -8% 0 0 0;
+            }
+        }
     }
 
     .card-accepted {

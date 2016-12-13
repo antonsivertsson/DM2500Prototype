@@ -163,6 +163,7 @@ export class HomePage {
 
   completeCard(index) {
     this.cards[index].type = "done";
+    this.cards[index].picture = this.donePictures[this.messageIndex];
   }
 
   removeCards() {
