@@ -5,11 +5,14 @@ page-home {
         transition: background 250ms ease-in;
 
         .crop {
-            height: 280px;
+            height: 220px;
             overflow: hidden;
+            background-size: cover;
+            background-position: center; 
+            background-repeat: no-repeat;
 
             img {
-                margin: -8% 0 0 0;
+                margin: -8% 0 -10% 0;
             }
         }
     }

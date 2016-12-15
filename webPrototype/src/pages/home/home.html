@@ -16,8 +16,8 @@
             [class.card-accepted]="card.accepted"
             [class.card-done]="card.type==='done'">
     <span *ngIf="card.type==='harvest'">
-      <div class="crop">
-        <img *ngIf="card.picture" [src]="card.picture"/>
+      <div *ngIf="card.picture" class="crop" [ngStyle]="{'background-image': 'url(' + card.picture + ')'}">
+        <!--<img *ngIf="card.picture" [src]="card.picture"/>-->
       </div>
       
       <ion-card-content *ngIf="card.type==='harvest'">
@@ -64,8 +64,8 @@
     </span>
 
     <span *ngIf="card.type==='done'">
-      <div class="crop">
-        <img *ngIf="card.picture" [src]="card.picture"/>
+      <div *ngIf="card.picture" class="crop" [ngStyle]="{'background-image': 'url(' + card.picture + ')'}">
+        <!--<img *ngIf="card.picture" [src]="card.picture"/>-->
       </div>
       
       <ion-card-content>
